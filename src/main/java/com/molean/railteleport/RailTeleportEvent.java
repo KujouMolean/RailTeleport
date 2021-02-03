@@ -1,6 +1,7 @@
 package com.molean.railteleport;
 
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -14,6 +15,7 @@ public class RailTeleportEvent extends PlayerEvent implements Cancellable {
     private final Block firstRail;
     private final Block lastRail;
     private Location destination;
+    private Sound sound = Sound.ENTITY_IRON_GOLEM_ATTACK;
 
     public RailTeleportEvent(Player who, Block firstRail, Block lastRail, Location destination) {
         super(who);
@@ -52,5 +54,13 @@ public class RailTeleportEvent extends PlayerEvent implements Cancellable {
 
     public void setDestination(Location destination) {
         this.destination = destination;
+    }
+
+    public Sound getSound() {
+        return sound;
+    }
+
+    public void setSound(Sound sound) {
+        this.sound = sound;
     }
 }

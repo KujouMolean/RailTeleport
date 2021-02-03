@@ -44,15 +44,19 @@ public class RailTeleportHandler implements Listener {
         destination.setZ(lastRail.getZ() + destination.getZ() - destination.getBlockZ());
 
         Bukkit.getScheduler().runTask(JavaPlugin.getPlugin(RailTeleportPlugin.class), () -> {
-            RailTeleportEvent railTeleport = new RailTeleportEvent(player, firstRail, lastRail, destination);
-            Bukkit.getPluginManager().callEvent(railTeleport);
-            if (event.isCancelled()) {
+            RailTeleportEvent railTeleportEvent = new RailTeleportEvent(player, firstRail, lastRail, destination);
+            Bukkit.getPluginManager().callEvent(railTeleportEvent);
+            if (railTeleportEvent.isCancelled()) {
                 //event canceled
                 return;
             }
-            Location finalDestination = railTeleport.getDestination();
+            Location finalDestination = railTeleportEvent.getDestination();
             player.teleport(finalDestination);
-            player.getWorld().playSound(destination, Sound.ENTITY_IRON_GOLEM_ATTACK, 1.0f, 1.0f);
+            Sound sound = railTeleportEvent.getSound();
+            if (sound == null) {
+                return;
+            }
+            player.getWorld().playSound(destination, sound, 1.0f, 1.0f);
         });
     }
 }
