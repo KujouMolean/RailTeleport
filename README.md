@@ -5,6 +5,7 @@
   
 ## 权限
 默认开放权限, 如果不想让某用户或用户组使用, 设置RailTeleport为false即可.
+
 以`LuckPerms`为例: `/lp group default permission set RailTeleport false`
 
 ## API
