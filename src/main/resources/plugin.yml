@@ -1,0 +1,7 @@
+name: RailTeleport
+version: ${project.version}
+main: com.molean.railteleport.RailTeleportPlugin
+permissions:
+  RailTeleport:
+    default: true
+    description: Allow to use rail to teleport
